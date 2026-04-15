@@ -122,17 +122,7 @@ When a critical condition is detected:
 
 ## Demo
 
-([Add your video link here](https://drive.google.com/file/d/1GoQM784-Yb3l3ZghxaSWp-q1uK8yKl0B/view))
+([Demo_Video](https://drive.google.com/file/d/1GoQM784-Yb3l3ZghxaSWp-q1uK8yKl0B/view))
 
 ---
-
-## Repository Structure
-/code
-   main.ino
-/docs
-   system_architecture.png
-   circuit_diagram.png
-/videos
-   demo.mp4
-README.md
 
