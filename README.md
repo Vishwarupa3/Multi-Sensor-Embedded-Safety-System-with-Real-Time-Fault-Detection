@@ -1,5 +1,4 @@
 # Multi-Sensor-Embedded-Safety-System-with-Real-Time-Fault-Detection
-# Rapid Embedded Safety Monitoring System (Sense & Respond Bot)
 
 ## Overview
 Designed and implemented a real-time embedded safety system using Arduino Uno that monitors environmental and motion parameters and triggers automated responses under hazardous conditions.
@@ -123,9 +122,17 @@ When a critical condition is detected:
 
 ## Demo
 
-(Add your video link here)
+([Add your video link here](https://drive.google.com/file/d/1GoQM784-Yb3l3ZghxaSWp-q1uK8yKl0B/view))
 
 ---
 
 ## Repository Structure
+/code
+   main.ino
+/docs
+   system_architecture.png
+   circuit_diagram.png
+/videos
+   demo.mp4
+README.md
 
