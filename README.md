@@ -1,74 +1,131 @@
 # Multi-Sensor-Embedded-Safety-System-with-Real-Time-Fault-Detection
-1. Overview
+# Rapid Embedded Safety Monitoring System (Sense & Respond Bot)
 
-Designed a real-time embedded safety system on Arduino Uno that monitors environmental and motion parameters and performs automated responses under hazardous conditions.
+## Overview
+Designed and implemented a real-time embedded safety system using Arduino Uno that monitors environmental and motion parameters and triggers automated responses under hazardous conditions.
 
-2. System Architecture
-Sensors → Processing Logic → Output/Action
+The system integrates multiple sensors to detect temperature, gas leakage, tilt, and obstacle proximity, and classifies system state into NORMAL, WARNING, and CRITICAL with corresponding actions.
 
+---
 
-Input:
+## System Architecture
 
-DHT11 (Temperature)
-MQ-7 (Gas)
-HC-SR04 (Distance)
-MPU6050 (Tilt)
+Input → Processing → Output
+
+Sensors:
+- DHT11 (Temperature & Humidity)
+- MQ-7 (Gas Sensor)
+- MPU6050 (Tilt Detection)
+- HC-SR04 (Ultrasonic Distance)
 
 Processing:
-
-Threshold-based classification (NORMAL / WARNING / CRITICAL)
-Multi-sensor decision logic
-Low-level register-based control
+- Threshold-based decision logic
+- Multi-sensor data fusion
 
 Output:
+- LCD (Status Display)
+- LEDs (State Indication)
+- Relay + DC Motor (Actuation)
 
-LED indicators
-LCD display
-Relay-controlled DC motor (fan)
-3. Hardware Components
-Component	Function
-Arduino Uno	Main controller
-DHT11	Temperature sensing
-MQ-7	Gas detection
-HC-SR04	Obstacle detection
-MPU6050	Tilt/orientation
-LCD (I2C)	Status display
-LEDs	State indication
-Relay + Motor	Automated response
-4. Working Principle
-Sensors continuously sampled at defined intervals
-Data processed using threshold-based logic
-System classified into:
-NORMAL
-WARNING
-CRITICAL
-Actions:
-LED pattern changes
-LCD shows critical parameter
-Relay activates motor in hazardous conditions
-5. Key Features
-Real-time multi-sensor data fusion
-Low-level register programming (no standard libraries)
-Automated safety response system
-Modular embedded architecture
-Fault classification logic
-6. Results / Output
-Successfully detects:
-High temperature
-Toxic gas levels
-Tilt instability
-Obstacle proximity
-Provides:
-Visual + physical response
-Real-time monitoring on LCD
-Automated actuation via relay
-7. Challenges & Engineering Decisions
-Implemented register-level programming for precise control
-Balanced sensor sampling rates for real-time response
-Designed threshold logic to avoid false triggering
-Managed noise and sensor inaccuracies
-8. Future Improvements
-Add STM32-based implementation
-Integrate CAN communication (automotive relevance)
-Add data logging for analysis
-Improve gas calibration accuracy
+---
+
+## Hardware Components
+
+- Arduino Uno (ATmega328P)
+- DHT11 Sensor
+- MQ-7 Gas Sensor
+- MPU6050 IMU
+- HC-SR04 Ultrasonic Sensor
+- 16x2 LCD (I2C)
+- LED Indicators (Red, Green)
+- Relay Module + DC Motor (Fan)
+
+---
+
+## Working Principle
+
+The system continuously monitors sensor data and applies threshold-based classification:
+
+- NORMAL → Safe conditions
+- WARNING → Threshold nearing unsafe levels
+- CRITICAL → Hazard detected, immediate action triggered
+
+### Key Logic:
+
+- Temperature > 50°C → CRITICAL
+- Gas > 200 ppm → CRITICAL (fan activated)
+- Distance < 5 cm → CRITICAL
+- Tilt > 20° → CRITICAL
+
+When a critical condition is detected:
+- Red LED is activated
+- LCD displays fault parameter
+- Relay triggers DC motor (fan)
+
+---
+
+## Software Implementation
+
+- Low-level register manipulation for DHT11 communication
+- I2C communication for MPU6050 and LCD
+- Modular sensor reading functions:
+  - readDHT11()
+  - measureDistance()
+  - getTilt()
+  - readGasPPM()
+
+- Real-time decision logic implemented in main loop
+
+---
+
+## Output & Results
+
+### System States:
+
+| State     | Condition Trigger | Output |
+|----------|------------------|--------|
+| NORMAL   | All sensors safe | Green LED ON |
+| WARNING  | Any threshold nearing | LEDs OFF |
+| CRITICAL | Any sensor critical | Red LED + Fan ON |
+
+### Example Output:
+- LCD displays parameter causing alert (Temp / Gas / Tilt / Distance)
+- Serial Monitor logs real-time sensor data
+
+---
+
+## Key Features
+
+- Real-time multi-sensor monitoring
+- Threshold-based fault detection
+- Automated safety response (fan activation)
+- Low-level embedded programming (register-based DHT11)
+- Modular and scalable design
+
+---
+
+## Power & Efficiency Considerations
+
+- Sensors polled at optimized intervals
+- Actuator (fan) triggered only in warning/critical states
+- Efficient use of GPIO and ADC resources
+
+---
+
+## Future Improvements
+
+- Replace threshold logic with adaptive/AI-based decision system
+- Add wireless communication (BLE/Wi-Fi)
+- Improve gas sensor calibration accuracy
+- Integrate battery-powered low-power modes
+
+---
+
+## Demo
+
+(Add your video link here)
+
+---
+
+## Repository Structure
+
